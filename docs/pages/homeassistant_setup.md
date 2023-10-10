@@ -53,11 +53,6 @@ action:
     data_template:
       entity_id: input_text.zone_action_result
       value: "{{ trigger.payload_json.action }} ({{trigger.payload_json.result }})"
-  - service: homeassistant.update_entity
-    data:
-      trigger.payload_json: null
-    target:
-      entity_id: binary_sensor.zone_status
 mode: single
 ```
 
@@ -96,7 +91,6 @@ input_select:
     name: Irrigate zone
     options:
       - zone1
-      - zone2
       - zone2
       - zone3
       - zone4
@@ -200,11 +194,7 @@ switch:
             data:
               value: inactive
         icon_template: >-
-          {% if is_state('switch.irrigate_lawn', 'on') %}
           mdi:water-pump
-          {% else %}
-          mdi:water-pump-off
-          {% endif %}
 ```
 
 ## Irrigation control card (user interface)
@@ -233,7 +223,7 @@ Control is made of several cards divided into 3 rows:
        response: input_text.zone_action_result # inputtext entity from configuration.yaml
      ```
 
-YAML config for the whole looks like this (english version is available in [irrigation-control.en.yaml](docs/scripts/irrigation-control.en.yaml)):
+YAML config for the whole looks like this (english version is available in [irrigation-control.en.yaml](/docs/scripts/irrigation-control.en.yaml)):
 
 ```yaml
 type: vertical-stack
@@ -322,7 +312,7 @@ Go to **raw configuration editor** for dashboard:
 
 ![dashboard ](/docs/images/ha/dashboard_options.png "HA - dashboard - raw configuration editor ")
 
-and manually paste into file (english version is available in [custom-button-card-templates.en.yaml](docs/scripts/custom-button-card-templates.en.yaml)):
+and manually paste into file (english version is available in [custom-button-card-templates.en.yaml](/docs/scripts/custom-button-card-templates.en.yaml)):
 
 ```yaml
 button_card_templates:
